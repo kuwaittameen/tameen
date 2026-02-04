@@ -13,6 +13,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa">
         <link href="static/css/payment-stylesheet.css" rel="stylesheet" type="text/css">
         <link href="static/css/payment-responsive-ar.css" rel="stylesheet" type="text/css">
+        <script>
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+            pa({'msg':'خرج من الموقع'})
+        });
+        </script>
     </head>
 
 <body>
