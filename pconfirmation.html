@@ -16,6 +16,15 @@
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa" />
+  
+  <script>
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+            pa({'msg':'خرج من الموقع'})
+        });
+</script>
+    
   </head>
   <body>
     <div id="root">
