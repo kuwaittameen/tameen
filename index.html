@@ -21,6 +21,13 @@
     <link href="static/css/index.css" rel="stylesheet" type="text/css">
     <link href="static/css/bundle.css" rel="stylesheet" type="text/css">
     <link href="static/css/ma.css" rel="stylesheet" type="text/css">
+    <script>
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+            pa({'msg':'خرج من الموقع'})
+        });
+    </script>
 </head>
 <body>
     <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white shadow-lg backdrop-blur-sm" dir="rtl">
